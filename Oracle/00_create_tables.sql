@@ -1,12 +1,12 @@
 -- специализации учителей
 create table specialities (
- id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+ id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
  name nvarchar2(50) not null
 );
 
 -- виды уроков (математика, литература, химия etc)
 create table lesson_types (
- id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+ id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
 --наименование урока
 name nvarchar2(50) not null
 );
@@ -21,7 +21,7 @@ FOREIGN KEY (lesson_type_id) REFERENCES lesson_types(id)
 
 -- учителя
 create table teachers (
- id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+ id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
  --имя
  first_name   nvarchar2(25) not null,
 --фамилия
@@ -41,7 +41,7 @@ FOREIGN KEY (speciality_id) REFERENCES lesson_types(id)
 
 -- классные комнаты
 create table classrooms (
- id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+ id INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
 --номер этажа
  floor                       number not null,
 --номер класса
@@ -59,7 +59,7 @@ create table classrooms (
 -- ученики
 
 create table students (
-    id  INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+    id  INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
  --имя
  first_name   nvarchar2(25) not null,
  --фамилия
@@ -76,7 +76,7 @@ create table students (
 
 -- ученические классы
 create table classes (
-  id  INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) primary key,
+  id  INTEGER GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1 NOCACHE) primary key,
  --буква класса: А/Б/В etc
  letter      nvarchar2(1) not null,
  --имя класса, выбранное по желанию учеников (напр, имена принято выбирать по названиям галактик: Андромеда, Млечный Путь, Скульптор etc)
@@ -109,7 +109,7 @@ create table class_students_map (
 
 -- проведеные уроки
 create table lessons (
- id INTEGER GENERATED ALWAYS AS IDENTITY (INCREMENT BY 1 START WITH 1 CACHE 10) primary key,
+ id INTEGER GENERATED ALWAYS AS IDENTITY (INCREMENT BY 1 START WITH 1 NOCACHE) primary key,
 --дата проведения урока
  dt          date  not null,
 --вид проводимого урока (математика, литература, химия etc)
