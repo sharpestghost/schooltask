@@ -108,7 +108,6 @@ create table class_students_map (
 );
 
 -- проведеные уроки
-drop table lessons cascade constraints;
 create table lessons (
  id INTEGER GENERATED ALWAYS AS IDENTITY (INCREMENT BY 1 START WITH 1 CACHE 10) primary key,
 --дата проведения урока
@@ -126,13 +125,12 @@ FOREIGN KEY (teacher_id) REFERENCES teachers(id),
 FOREIGN KEY (class_id) REFERENCES  classes(id),
 FOREIGN KEY (classroom_id) REFERENCES classrooms(id)
 );
-drop table lessons_diary;
 -- дневник успеваемости и посещения
 create table lessons_diary (
  lesson_id  number not null,
  student_id number not null,
 --признак отсутствия на уроке
- is_absent  number not null check(is_absent = 1 OR is_absent =  0),
+ is_absent  number not null check(is_absent = 1 OR is_absent = 0),
 --полученная на уроке оценка
  grade      number,
 --полученная на уроке оценка (дополнительная)
